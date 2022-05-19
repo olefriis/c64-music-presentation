@@ -50,7 +50,9 @@ Play songs by calling `bundle exec ruby play.rb <file> <song_number>`. These are
 It's interesting to try to turn features on and off and see what happens. So we have a few branches with stuff disabled.
 * `only-on-and-off`: Only start a sample when the gate is on, stop it when the gate is off. Don't care about the ADSR envelope.
   The "Thing on a Spring" swoop sound is gone. The main "Last Ninja - The Wastelands (loader)" song sounds really terrible!!
-  "Paperboy" sounds pretty good, but the backgound sound is weird.
+  "Paperboy" sounds pretty good, but the backgound sound is weird. "Bubble Bobble" is outright missing some notes because it
+  switches the frequency of playing synths.
 * `no-envelope`: Allow the frequencies to be changed while the gate is on, but do not respect envelopes. "Paperboy" now sounds
   pretty good with vibrato etc., but there is a clear quality difference between this version and the one on `master`. This
-  version is much more "staccato". "Ocean Loader 1" sounds very basic in this version.
+  version is much more "staccato". "Ocean Loader 1" sounds very basic in this version. "Bubble Bobble" sounds much better than
+  before.
