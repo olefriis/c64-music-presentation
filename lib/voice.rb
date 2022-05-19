@@ -20,7 +20,6 @@ class Voice
     @pulse_low = @pulse_high = 0
     @attack_decay = @sustain_release = 0
     @control_register = 0
-    @current_synth = nil
     @playing = false
 
     @old_frequency = 0
@@ -32,7 +31,6 @@ class Voice
         osc_client.send OSC::Message.new('/trigger', @channel, waveform, midi_note, attack, decay, sustain_level)
         @old_frequency = frequency
 
-        # TODO: decay, release
         @playing = true
       end
     elsif @playing
@@ -51,7 +49,7 @@ class Voice
   end
 
   def midi_note
-    (12 * Math.log(actual_frequency / 440.0, 2.0) + 69).round(2)
+    (12 * Math.log(actual_frequency / 440.0, 2) + 69).round(2)
   end
 
   def actual_frequency
