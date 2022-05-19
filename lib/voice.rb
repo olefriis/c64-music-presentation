@@ -34,7 +34,7 @@ class Voice
         @playing = true
       end
     elsif @playing
-      osc_client.send OSC::Message.new('/trigger', @channel, 0, 0, release, 0, 0) if @playing
+      osc_client.send OSC::Message.new('/trigger', @channel, 0, 0, release, 0, 0)
       @playing = false
     end
   end
