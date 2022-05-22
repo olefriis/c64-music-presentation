@@ -4,6 +4,7 @@
 Download and install [Sonic Pi](https://sonic-pi.net). Install Ruby 3.1.0. Run `bundle install` in your terminal.
 Download the newest version of the [High Voltage SID Collection](https://www.hvsc.c64.org), unarchive it (this may
 require you to install a tool to unpack 7zip or rar files), and put it in the `C64Music` directory.
+
 ## Sonic Pi Code
 Start up Sonic Pi, copy-paste the code below into the editor, and hit the "run" button. Now Sonic Pi is ready to be
 driven by the `play.rb` script!
@@ -32,7 +33,7 @@ end
 ```
 
 ## Great Songs!
-Play songs by calling `bundle exec ruby play.rb <file> <song_number>`. These are some great songs:
+Play songs by calling `./play.rb <file> <song_number>`. These are some great songs:
 * Commando: `C64Music/MUSICIANS/H/Hubbard_Rob/Commando.sid 1`
 * Paperboy: `C64Music/MUSICIANS/C/Cooksey_Mark/Paperboy.sid`
 * Last Ninja - The Wastelands (loader): `C64Music/MUSICIANS/D/Daglish_Ben/Last_Ninja.sid`

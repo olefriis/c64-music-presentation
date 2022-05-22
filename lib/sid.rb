@@ -42,10 +42,6 @@ class Sid
     end
   end
 
-  def stop!
-    @voices.each(&:stop!)
-  end
-
   def synths_for_voices
     @voices.map(&:synths)
   end
