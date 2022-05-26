@@ -29,14 +29,18 @@ class Voice
     if gate
       if frequency > 0 && (!@playing || @old_frequency != frequency)
         osc_client.send OSC::Message.new('/trigger', @channel, waveform, midi_note, attack, decay, sustain_level)
-        @old_frequency = frequency
 
         @playing = true
       end
     elsif @playing
-      osc_client.send OSC::Message.new('/trigger', @channel, 0, 0, release, 0, 0)
+      osc_client.send OSC::Message.new('/trigger', @channel, 0, midi_note, release, 0, 0)
+
       @playing = false
+    elsif @old_frequency != frequency
+      osc_client.send OSC::Message.new('/trigger', @channel, 0, midi_note, 0, 0, 0)
     end
+
+    @old_frequency = frequency
   end
 
   private

@@ -13,27 +13,27 @@ driven by the `play.rb` script!
 synths = [nil, nil, nil]
 gates = [false, false, false]
 
-while true
-  channel, synth_type, note, attack, decay, sustain_level = sync "/osc*/trigger"
+loop do
+  channel, synth_type, note, attack_rate, decay_rate, sustain_level = sync "/osc*/trigger"
+  
+  control synths[channel], note: note if synths[channel]
+  
   if synth_type == 0 && gates[channel]
-    # Release the current sync
+    # Release the current sync - (mis)use attack_rate as release rate
+    control synths[channel], amp: 0, amp_slide: attack_rate if synths[channel]
     gates[channel] = false
-    control synths[channel], amp: 0, amp_slide: attack # attack is (mis)used for release here...
-  elsif gates[channel]
-    # Change the note on the currently playing synth
-    control synths[channel], note: note
-  elsif synth_type > 0
+  elsif synth_type > 0 && !gates[channel]
     # Start a new synth
-    gates[channel] = true
     kill synths[channel] if synths[channel]
     waveform = [:tri, :saw, :pulse, :noise][synth_type - 1]
-    synths[channel] = synth waveform, note: note, attack: attack, decay: decay, sustain_level: sustain_level, sustain: 100
+    synths[channel] = synth waveform, note: note, attack: attack_rate, decay: decay_rate, sustain_level: sustain_level, sustain: 100
+    gates[channel] = true
   end
 end
 ```
 
 ## Great Songs!
-Play songs by calling `./play.rb <file> <song_number>`. These are some great songs:
+Play songs by calling `./play.rb <file> [song_number]`. These are some great songs:
 * Commando: `C64Music/MUSICIANS/H/Hubbard_Rob/Commando.sid 1`
 * Paperboy: `C64Music/MUSICIANS/C/Cooksey_Mark/Paperboy.sid`
 * Last Ninja - The Wastelands (loader): `C64Music/MUSICIANS/D/Daglish_Ben/Last_Ninja.sid`
@@ -46,6 +46,12 @@ Play songs by calling `./play.rb <file> <song_number>`. These are some great son
 * Ocean Loader 1: `C64Music/MUSICIANS/G/Galway_Martin/Ocean_Loader_1.sid`
 * Ocean Loader 2: `C64Music/MUSICIANS/G/Galway_Martin/Ocean_Loader_2.sid`
 * Thing on a Spring: `C64Music/MUSICIANS/H/Hubbard_Rob/Thing_on_a_Spring.sid`
+
+## Unsupported Songs
+We only support SID files in the `PSID` format. Unfortunately some noticeable classics are in the `RSID` format, which requires
+a more thorough Commodore 64 emulation:
+* Great Giana Sisters: `C64Music/MUSICIANS/H/Huelsbeck_Chris/Great_Giana_Sisters.sid`
+* Myth - History in the Making: `C64Music/MUSICIANS/T/Tel_Jeroen/Myth.sid`
 
 ## Branches to try out!
 It's interesting to try to turn features on and off and see what happens. So we have a few branches with stuff disabled.
