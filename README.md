@@ -34,8 +34,8 @@ end
 
 ## Great Songs!
 Play songs by calling `./play.rb <file> [song_number]`. These are some great songs:
-* Commando: `C64Music/MUSICIANS/H/Hubbard_Rob/Commando.sid 1`
-* Paperboy: `C64Music/MUSICIANS/C/Cooksey_Mark/Paperboy.sid`
+* Commando: `C64Music/MUSICIANS/H/Hubbard_Rob/Commando.sid`
+* Paperboy: `C64Music/MUSICIANS/C/Cooksey_Mark/Paperboy.sid 2`
 * Last Ninja - The Wastelands (loader): `C64Music/MUSICIANS/D/Daglish_Ben/Last_Ninja.sid`
 * Last Ninja - The Wastelands: `C64Music/MUSICIANS/D/Daglish_Ben/Last_Ninja.sid 6`
 * 1942: `C64Music/MUSICIANS/C/Cooksey_Mark/1942.sid`
