@@ -12,7 +12,6 @@ class Voice
   attr_writer :control_register
   attr_writer :attack_decay
   attr_writer :sustain_release
-  attr_reader :synths
 
   def initialize(channel)
     @channel = channel
@@ -64,7 +63,7 @@ class Voice
     return 1 if @control_register & 16 != 0 # Triangle
     return 2 if @control_register & 32 != 0 # Sawtooth
     return 3 if @control_register & 64 != 0 # Pulse
-    return 3 if @control_register & 128 != 0 # Noise
+    return 4 if @control_register & 128 != 0 # Noise
     STDERR.puts "Unknown waveform: #{@control_register}"
     return :noise
   end
