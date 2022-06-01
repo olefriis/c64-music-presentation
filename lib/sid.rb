@@ -41,8 +41,4 @@ class Sid
       voice.finish_frame(@osc_client)
     end
   end
-
-  def synths_for_voices
-    @voices.map(&:synths)
-  end
 end
